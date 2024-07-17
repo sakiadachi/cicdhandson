@@ -10,17 +10,17 @@ jobs:
     name: ci
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: Set up Go environment
-      uses: actions/setup-go@v5
-      with:
-        go-version: '1.22.5'
-    - name: Format codes
-      run: test -z $(gofmt -l .)
-    - name: Run static code analysis
-      run: go vet ./...
-    - name: Run tests
-      run: go test
-    - name: Build a website
-      run: go build .
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Go environment
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22.5'
+      - name: Format codes
+        run: test -z $(gofmt -l .)
+      - name: Run static code analysis
+        run: go vet ./...
+      - name: Run tests
+        run: go test
+      - name: Build a website
+        run: go build .
