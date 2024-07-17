@@ -13,9 +13,9 @@ func main() {
 		name := c.Param("name")
 		c.String(http.StatusOK, makeGreeting(name))
 	})
-	router.RUN(":8080")
+	router.Run(":8080")
 }
 
-func makeGreeting(name String) string {
-	return fmt.Sprintf("Hello, %d", name)
+func makeGreeting(name string) string {
+	return fmt.Sprintf("Hello, %s", name)
 }
