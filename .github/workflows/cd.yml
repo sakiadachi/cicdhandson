@@ -1,0 +1,27 @@
+name: cd
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  cd:
+    name: cd
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@4
+      - name: Sign in Conteiner registry
+        uses: docker/login-action@3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }} 
+      - name: Build and Push Docker
+        uses: docker/build-push-action@5
+        with:
+          push: true
+          tags: ghcr.io/${{ github.repository }}:latest
